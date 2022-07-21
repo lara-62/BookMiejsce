@@ -1,0 +1,74 @@
+<%- include('Header');-%>
+<title>Sign Up</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="/CSS/styles.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<body>
+  
+    <div class="container SignUp_Container">
+      <div class="header">
+         
+        <h2 class="signup_title"><i class="fas fa-book fa-1x brand-icon"></i>Book <span class="title">Miejsce</span></h2>
+        <hr class="signup_hr" >
+        <h1 >Create Account</h1>
+      </div>
+      <div class="main">
+      <div >
+       <form action="/auth-signup" method="post" class="row g-3">
+        <div class="col-lg-12 gap-between">
+            <label for="fullname" class="form-label"> * Your Name</label>
+           <input type="text" name="fullname" id="fullname" placeholder="Give your Full name" class="form-control" required>
+        </div>
+        <div class="col-lg-12 gap-between">
+            <label for="email" class="form-label"> * Email</label>
+           <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
+        </div>
+        <div class="col-lg-12 gap-between">
+            <label for="username" class="form-label"> * User Name</label>
+           <input type="text" name="username" id="username" placeholder="It will show on your account" class="form-control" required>
+        </div>
+        <div class="col-lg-6 gap-between">
+          <label for="password" class="form-label"> * Password</label>
+         <input type="password" name="password" id="password" placeholder="Give a strong password" class="form-control" minlength="6" required>
+         
+      </div>
+      <div class="col-lg-6 gap-between">
+         <label for="conpassword" class="form-label"> * Confirm Password</label>
+         <input type="password" name="conpassword" id="conpassword" placeholder="Confirm your password" class="form-control" minlength="6" required>
+      </div>
+        <div class="col-lg-12 gap-between">
+           <label for="Address"  class="form-label">Address</label>
+           <input type="text" name="address" id="Address" placeholder="Give your address!" class="form-control">
+        </div>   
+        <div class="col-lg-6 gap-between">
+          <label for="" class="form-label"> *Date of Birth</label>
+           <input type="date" class="form-control" name="Dob" required >
+        </div>
+        <div class="col-lg-6 gap-between">
+          Gender
+          <div class="form-check">
+            <input type="radio" class="form-check-input" name="gender" value="female" id="female"  >
+            <label for="female" class="form-check-label"> Female</label>
+          </div>
+         <div class="form-check">
+          <input type="radio" class="form-check-input" name="gender" value="male" id="male">
+          <label for="male" class="form-check-label"> Male</label>
+         </div>
+           <br>
+        </div>
+        <div class="col-lg-12 gap-between d-grid  gap-2">
+         <button type="submit" class="btn btn-lg btn-dark">Sign Up</button>
+        </div>
+        
+
+       
+      </div>
+
+      
+      </div>
+   
+    </div>
+<%- include('Footer');-%>
