@@ -5,7 +5,6 @@ const bodyParser=require('body-parser');
 const session = require('express-session');
 const morgan=require('morgan');
 const jwt=require('jsonwebtoken');
-const cors = require("cors");
 
 
 //custom
@@ -31,8 +30,8 @@ app.use(session({
     resave: false,
     saveUninitialized:true
 }))
-app.use(cors());
-app.options('*',cors());
+// app.use(cors());
+// app.options('*',cors());
 
 app.use(morgan('combined'));
 
