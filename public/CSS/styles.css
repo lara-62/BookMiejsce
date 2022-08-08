@@ -57,7 +57,23 @@ body {
    {
     width: 100vw;
     height: 50rem;
+    background-image: url('../image/Home page.jpg');
+    background-size: contain;
+    position:absolute;
+    
    }
+   .reg-alert
+   {
+    margin: 5rem auto ;
+    width: 50%;
+    text-align: center;
+   }
+  .reg-fail
+  {
+ text-align: center;
+  }
+    
+   
   .brand
   {
     margin-right: 4rem;

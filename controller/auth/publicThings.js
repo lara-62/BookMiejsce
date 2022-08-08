@@ -1,5 +1,5 @@
 const oracledb=require('oracledb')
-const config=require('./oracleCon');
+const config=require('../../Database/Config');
 
 function get(req, res, next) {
     oracledb.getConnection(

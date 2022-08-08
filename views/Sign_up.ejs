@@ -17,7 +17,17 @@
       </div>
       <div class="main">
       <div >
-       <form action="/auth-signup" method="post" class="row g-3">
+         
+        <% if (msg.length>0) { %>
+          <% for (e of msg) { %>
+          <div class="alert alert-warning alert-dismissible fade show reg-fail" role="alert">
+           <%= e %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+        <% } %>
+        <% } %>
+          
+       <form action="/api/users" method="post" class="row g-3">
         <div class="col-lg-12 gap-between">
             <label for="fullname" class="form-label"> * Your Name</label>
            <input type="text" name="fullname" id="fullname" placeholder="Give your Full name" class="form-control" required>
@@ -50,11 +60,11 @@
         <div class="col-lg-6 gap-between">
           Gender
           <div class="form-check">
-            <input type="radio" class="form-check-input" name="gender" value="female" id="female"  >
+            <input type="radio" class="form-check-input" name="gender" value="F" id="female"  >
             <label for="female" class="form-check-label"> Female</label>
           </div>
          <div class="form-check">
-          <input type="radio" class="form-check-input" name="gender" value="male" id="male">
+          <input type="radio" class="form-check-input" name="gender" value="M" id="male">
           <label for="male" class="form-check-label"> Male</label>
          </div>
            <br>
