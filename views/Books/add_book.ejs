@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+
+    <!--links-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="/CSS/styles.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+<body>
+    <div class="container SignUp_Container">
+        <div class="header">
+           
+          <h2 class="signup_title"><i class="fas fa-book fa-1x brand-icon"></i>Book <span class="title">Miejsce</span></h2>
+          <hr class="signup_hr" >
+          <h1 >Add your book information!</h1>
+        </div>
+        <div class="main">
+        <div >
+           
+          <% if (msg.length>0) { %>
+            <% for (e of msg) { %>
+            <div class="alert alert-warning alert-dismissible fade show reg-fail" role="alert">
+             <%= e %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+          <% } %>
+          <% } %>
+            
+         <form action="/upload_book" method="post" class="row g-3 "enctype="multipart/form-data">
+          <div class="col-lg-12 gap-between">
+              <label for="title" class="form-label"> * Title</label>
+             <input type="text" name="title" id="title" placeholder="Give the name of your book" class="form-control" required>
+          </div>
+          <div class="col-lg-12 gap-between">
+            <label for="genre" class="form-label"> * Genre</label>
+           <input type="text" name="genre" id="genre" placeholder="Genre of the book" class="form-control" required>
+        </div>
+  
+      <div class="col-lg-12 gap-between">
+        <label for="author" class="form-label"> * Author</label>
+       <input type="text" name="author" id="author" placeholder="Author of the book" class="form-control" required>
+    </div>
+          <div class="col-lg-12 gap-between">
+              <label for="isbn" class="form-label"> * ISBN NUMBER</label>
+             <input type="text" name="isbn" id="isbn" placeholder="ISBN NUMBER" class="form-control" required>
+          </div>
+          <div class="col-lg-12 gap-between">
+            <label for="language" class="form-label"> * Language</label>
+           <input type="text" name="language" id="language" placeholder="In which language the book is written?" class="form-control"  required>
+           
+        </div>
+        <div class="col-lg-12 gap-between">
+           <label for="nop" class="form-label"> * Number of pages</label>
+           <input type="number" name="nop" id="nop" placeholder="Number of pages" class="form-control"  required>
+        </div>
+          <div class="col-lg-12 gap-between">
+             <label for="description"  class="form-label">*Description</label>
+             <input type="text" name="description" id="description" placeholder="Describe about the books!" class="form-control">
+          </div>  
+          <div class="col-lg-12 gap-between">
+            <label for="publisher" class="form-label"> * Publisher</label>
+           <input type="text" name="publisher" id="publisher" placeholder="Publisher of the book" class="form-control" required>
+        </div> 
+          <div class="col-lg-6 gap-between">
+            <label for="publication" class="form-label"> *Publication Date</label>
+             <input type="date" class="form-control" name="pd" required >
+          </div>
+          <br>
+          <div class="col-lg-12 gap-between">
+            <label for="cover" class="form-label"> cover picture</label><br>
+            <input type="file" name="cover" id="cover" accept="image/*">
+          </div>
+          
+          <div class="col-lg-12 gap-between d-grid  gap-2">
+           <button type="submit" class="btn btn-lg btn-dark">Submit</button>
+          </div>
+          
+  
+         
+        </div>
+  
+        
+        </div>
+     
+      </div>
+
+
+</body>
+</html>

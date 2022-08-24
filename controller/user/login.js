@@ -2,7 +2,8 @@ var oracledb = require('oracledb');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var config = require('../../Database/Config.js');
-const user_profile=require('../../route/users/user_profile');
+const user_profile = require('../../route/users/user_profile');
+
 
 function post(req, res, next) {
     let errors = [];
@@ -42,12 +43,12 @@ function post(req, res, next) {
                     console.log(results.rows[0]);
                     if (results.rows[0] === undefined) {
                         errors.push('Wrong Email');
-                        
+
                         res.render('Home', {
                             msg: [],
                             error: errors
                         })
-                      
+
                     }
                     else {
                         user = results.rows[0];
@@ -67,21 +68,25 @@ function post(req, res, next) {
 
                             payload = {
 
-                                user_id: results.USER_ID,
+                                user_id: user.id,
                                 sub: user.email,
                                 role: user.role
                             };
-                            console.log(process.env);
-                            const token = jwt.sign(payload, config.jwtSecretKey, { expiresIn: '1h' });
+                            //console.log(process.env);
+                            console.log(payload.user_id+'blah');
+                            const token = jwt.sign(payload, config.jwtSecretKey,{expiresIn:'1h'});
+                            
                             let options = {
                                 maxAge: 90000000,
-                                httpOnly: true
+                                httpOnly: true,
+                                SameSite:'None'
                             }
-                            res.cookie('auth-token', token, options);
+                            
+                            res.cookie("auth", token, options);
 
                             // res.status(200).json({
                             //     user: user,
-                            //     token: jwt.sign(payload, config.jwtSecretKey,{expiresIn:'1h'})
+                            //     token: token
                             // });
                             if (errors.length === 0) {
                                 res.redirect('/user-profile');

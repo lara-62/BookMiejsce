@@ -1,0 +1,107 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Book-list</title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+     Custom styles for this template -->
+    <!-- <link href="/CSS/styles.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  </head>
+  <body> --> 
+
+
+    <%-include('../home_page_navbar.ejs')-%>
+  <div class="wrap">
+    <% if (msg.length>0) { %>
+      <% for (e of msg) { %>
+      <div class="alert alert-warning alert-dismissible fade show " role="alert" style="text-align:center; ">
+       <%= e %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+    <% } %>
+    <% } %>
+    <section >
+    
+    
+      <div class="row book_container ">
+        <% if (book.length>0){ %>
+          <% for(e of book){ %>
+            <div class="col-lg-3 col-md-6 ">
+              <div class="card ">
+    
+                <img src="http://localhost:3000/image/Books/<%=e.IMAGE_URL%>" class="card-img-top book-cover" alt="...">
+    
+                <div class="card-body book_card ">
+                  <h5 class="card-title" style="font-weight:bold ;">
+                    <%= e.TITLE.toUpperCase()%>
+                  </h5>
+                  <p class="card-text"></p>
+                  <a href="/Book_detail/<%= e.BOOK_ID%>" class="btn btn-warning"><i
+                      class="fas fa-book fa-1x brand-icon"></i>View Book</a>
+                </div>
+    
+              </div>
+            </div>
+            <%}%>
+              <%}%>
+      </div>
+    </section>
+
+    <!-- <div class="d-flex flex-wrap justify-content-evenly">
+      <% for(let i = 0;i < book.length;i++){ %>
+        <div class="card mb-1 m-1" style="width: 12rem;">
+            <img class="img-fluid p-3 circular" src="<%=book[i].IMAGE_URL%>">
+            alt="Card image cap">
+            <div class="card-body" style="display: flex;flex-direction: column;justify-content:space-between;">
+            <h5 class="card-title"><%= book[i].TITLE %></h5>
+                <div class="d-grid gap-2">
+                    <a href=""class="btn btn-warning btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
+                        <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+                    </svg>
+                  VIEW AUTHOR
+                    </a>
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div> -->
+   
+
+<!-- 
+    <div class="d-flex flex-wrap justify-content-evenly">
+      <% for(let i = 0;i < book.length;i++){ %>
+      <div class="card mb-1 m-1" style="width: 12rem;">
+          <img class="card-img-top p-3" src="<%= book[i].IMAGE_URL %>"alt="Card image cap">
+          <div class="card-body" style="display: flex;flex-direction: column;justify-content:space-between;">
+              <p style="color: #266dd3;font-weight: 650; font-size: 18px;" class="card-title"><%= book[i].TITLE %></p>
+              <div>
+                  
+                  <p class="card-text">BLAH</p>
+                  <div class="d-grid gap-2">
+                      <a href="/books/<%=book[i].ID%>" class="btn btn-warning">
+                      <i class="bi bi-book-half"></i>
+                      VIEW BOOK
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <% } %>
+      <br/>
+  
+  </div> -->
+
+
+  </div>
+       
+        
+        <%- include('../Footer')-%>

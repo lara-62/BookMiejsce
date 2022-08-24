@@ -56,10 +56,10 @@ body {
    .homepage_image
    {
     width: 100vw;
-    height: 50rem;
+    height: 40rem;
     background-image: url('../image/Home page.jpg');
     background-size: contain;
-    position:absolute;
+    
     
    }
    .reg-alert
@@ -67,6 +67,7 @@ body {
     margin: 5rem auto ;
     width: 50%;
     text-align: center;
+   
    }
   .reg-fail
   {
@@ -125,9 +126,11 @@ body {
   .footer{
 
     text-align: center;
+    margin-top: auto;
     
     
   }
+ 
   .signup_title
   {
     padding-bottom: 2rem;
@@ -212,6 +215,215 @@ body {
 
 
 
+/* admin panel*/
 
+.admin_panel
+{
+ 
+  margin: 10rem auto; 
+  width: 50%;
+  /* background-color: #023047; */
+  
+}
+  
+.feature-text
+{
+    width: 60% ;
+    margin: 0 auto;
+    padding: 0 0 4.5rem 0;
+    color:#8f8f8f;
+
+}
+.feature-header
+{
+    font-family: "Montserrat-dark";
+    font-weight: bolder;
+    font-size: 2rem;
+}
+.feature-header:hover
+{
+  color: #023047;
+}
+.icon 
+{
+    color: #ef8172;
+    margin-bottom: 1rem;
+}
+.icon:hover
+{
+    color: #ff4c68;
+}
+.features
+{
+    padding: 5% 0%;
+   
+    text-align: center;
+    position: relative;
+    background-color: #ffffff;
+   
+    
+}
+.button_admin
+{
+  background-color: transparent;
+  outline: none;
+  border-width: 0px;
+  border-color: transparent;
+}
+
+#testimonials
+{
+    padding: 7% 15%;
+    text-align: center;
+    color: white;
+    background-color: #ef8172;
+}
+.testimonial-image
+{
+    
+    width: 20%;
+    margin: 20px;
+}
+.book_container
+{
+  width: 60%;
+  margin: 10rem auto;
+  height:100vh
 
   
+  
+  
+}
+.my-scrollbar {
+  scrollbar-width:inherit;
+  scrollbar-color: grey white;
+  padding:10px;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.my-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  color:grey;
+
+}
+.my-scrollbar::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 20px;
+  border: 3px solid white;
+}
+
+.book_card
+{
+  text-align: center;
+  height: 10rem;
+}
+.book-cover
+{
+  height: 12rem;
+}
+
+/* account*/
+
+
+#authorname
+{
+  outline: none;
+  border-color: black;
+  background-color: transparent;
+  
+  text-align:center
+}
+
+
+.wrap{
+  margin-top: 5rem;
+}
+
+
+.bookdetail_cover
+{
+  height: 18rem;
+  width: 12rem;
+  margin:3rem 1rem;
+ 
+}
+.bookdetail_cover_container
+{
+  margin: 0rem 6rem;
+
+}
+.button-left
+{
+  border-radius: 25px 0px   0px 25px;
+  width: 190px;
+}
+.button-right
+{
+  border-radius: 0px 25px  25px 0px;
+}
+.button_round
+{
+  border-radius: 25px;
+}
+
+
+
+.book_detail_description{
+   margin: 2rem 0rem;
+   font-size: 0.9rem;
+}
+
+.collapse_button
+{
+  text-decoration: underline;
+  outline: none;
+  background-color: transparent;
+  border-width: 0px;
+  
+}
+.book_information
+{
+  padding: 2rem;
+  justify-content: space-between;
+}
+.number_of_people_reading{
+  padding: 1.5rem;
+  font-size: 14px;
+}
+.review-title
+{
+  font-size:2rem;
+  font-weight: bold;
+}
+.review_button
+{
+  margin: 5rem 0rem;
+}
+.user_name_in_review_section
+{
+  font-weight: bold;
+}
+.star{
+  color: goldenrod;
+}
+.star:checked
+{
+  color: #023047;
+}
+.like_button
+{
+  outline: none;
+  text-decoration: none;
+  background-color: transparent;
+  padding: 0rem 1rem ;
+  border: transparent;
+}
+.like_comment
+{
+  font-weight: bold;
+  margin: 0rem 0.5rem;
+}
+.like_comment:hover
+{
+  text-decoration: underline;
+}

@@ -2,6 +2,7 @@ var oracledb = require('oracledb');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var config = require('../../Database/Config.js');
+const { use } = require('../../route/users/user_profile.js');
 let errors=[];
 async function post(req, res, next) {
      errors = [];
@@ -92,6 +93,7 @@ async function post(req, res, next) {
                                               else
                                               {
                                                 payload = {
+                                                    user_id:user1.user_id,
                                                     sub: user1.email,
                                                     role: user1.role
                                                 };
