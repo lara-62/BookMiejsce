@@ -16,6 +16,7 @@ async function upload_book(res,req) {
     let publisher1=req.body.publisher
     let author=req.body.author.toLowerCase()
     let genre1=req.body.genre.toLowerCase()
+    let genre_class=genre1.split(",")
    
 
     let sql1='INSERT INTO PUBLISHER(PUBLISHER_NAME)VALUES(:publisher) RETURNING PUBLISHER_ID INTO :publisher_id'
@@ -46,24 +47,26 @@ async function upload_book(res,req) {
         }
         
     }
-    let result= await database.execute(sql,book);
-    let sql2='INSERT INTO GENRE(NAME)VALUES(:genre) RETURNING GENRE_ID INTO :genre_id';
-    let binds={
-        genre:genre1,
-        genre_id:
-        {
-            type: oracledb.NUMBER,
-            dir: oracledb.BIND_OUT
+    let result = await database.execute(sql, book);
+    for (let i = 0; i < genre_class.length; i++) {
+        let sql2 = 'INSERT INTO GENRE(NAME)VALUES(:genre) RETURNING GENRE_ID INTO :genre_id';
+        let binds = {
+            genre: genre_class[i],
+            genre_id:
+            {
+                type: oracledb.NUMBER,
+                dir: oracledb.BIND_OUT
+            }
         }
-    }
-    let result2= await database.execute(sql2,binds);
+        let result2 = await database.execute(sql2, binds);
 
-    let sql3='INSERT INTO OF_GENRE VALUES(:book_id,:genre_id)'
-    let binds3={
-        book_id:result.outBinds.book_id[0],
-        genre_id:result2.outBinds.genre_id[0]
+        let sql3 = 'INSERT INTO OF_GENRE VALUES(:book_id,:genre_id)'
+        let binds3 = {
+            book_id: result.outBinds.book_id[0],
+            genre_id: result2.outBinds.genre_id[0]
+        }
+        let result3 = await database.execute(sql3, binds3)
     }
-   let result3=await database.execute(sql3,binds3)
     let sql4='INSERT INTO USERS(FULL_NAME)VALUES(:user_name) RETURNING USER_ID INTO :user_id'
     let binds4={
         user_name:author,
@@ -146,14 +149,10 @@ async function get_all_books()
 
 async function getBookByName(name)
 {   let sql='SELECT b.BOOK_ID AS BOOK_ID, TITLE,PUBLICATION_DATE,b.IMAGE_URL as IMAGE_URL,DESCRIPTION,ISBN,LANGUAGES,NUMBER_OF_PAGES ,u.FULL_NAME as AUTHOR_NAME, '+
-'p.PUBLISHER_NAME ,g.NAME as genre_name,p.PUBLISHER_ID,g.GENRE_ID,u.USER_ID '+
+'p.PUBLISHER_NAME,p.PUBLISHER_ID,u.USER_ID '+
 ' FROM BOOKS b JOIN'+
 ' WRITES w ON(b.BOOK_ID=w.BOOK_ID)'+
 ' JOIN USERS u ON (w.USER_ID=u.USER_ID)'+
-' JOIN OF_GENRE of_g'+
-' ON (b.BOOK_ID=of_g.BOOK_ID)'+
-' JOIN GENRE g'+
-' ON(of_g.GENRE_ID=g.GENRE_ID)'+
 ' JOIN PUBLISHER p'+
 ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)'+
 ' WHERE TITLE=:title';
@@ -185,14 +184,10 @@ async function getBookBygenre(genre_name)
 async function getBookByAuthor(author_name)
 {
     let sql='SELECT b.BOOK_ID AS BOOK_ID, TITLE,PUBLICATION_DATE,b.IMAGE_URL as IMAGE_URL,DESCRIPTION,ISBN,LANGUAGES,NUMBER_OF_PAGES ,u.FULL_NAME as AUTHOR_NAME, '+
-    'p.PUBLISHER_NAME ,g.NAME as genre_name,p.PUBLISHER_ID,g.GENRE_ID,u.USER_ID '+
+    'p.PUBLISHER_NAME ,p.PUBLISHER_ID,u.USER_ID '+
     ' FROM BOOKS b JOIN'+
     ' WRITES w ON(b.BOOK_ID=w.BOOK_ID)'+
     ' JOIN USERS u ON (w.USER_ID=u.USER_ID)'+
-    ' JOIN OF_GENRE of_g'+
-    ' ON (b.BOOK_ID=of_g.BOOK_ID)'+
-    ' JOIN GENRE g'+
-    ' ON(of_g.GENRE_ID=g.GENRE_ID)'+
     ' JOIN PUBLISHER p'+
     ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)'+
     ' WHERE u.FULL_NAME=:author_name';
@@ -207,14 +202,10 @@ async function getBookByAuthor(author_name)
 async function getBookDetails(Book_id)
 {
        let sql='SELECT b.BOOK_ID AS BOOK_ID, TITLE,PUBLICATION_DATE,b.IMAGE_URL as IMAGE_URL,DESCRIPTION,ISBN,LANGUAGES,NUMBER_OF_PAGES ,u.FULL_NAME as AUTHOR_NAME, '+
-       'p.PUBLISHER_NAME ,g.NAME as genre_name,p.PUBLISHER_ID,g.GENRE_ID,u.USER_ID '+
+       'p.PUBLISHER_NAME ,p.PUBLISHER_ID,u.USER_ID '+
        ' FROM BOOKS b JOIN'+
        ' WRITES w ON(b.BOOK_ID=w.BOOK_ID)'+
        ' JOIN USERS u ON (w.USER_ID=u.USER_ID)'+
-       ' JOIN OF_GENRE of_g'+
-       ' ON (b.BOOK_ID=of_g.BOOK_ID)'+
-       ' JOIN GENRE g'+
-       ' ON(of_g.GENRE_ID=g.GENRE_ID)'+
        ' JOIN PUBLISHER p'+
        ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)'+
        ' WHERE b.BOOK_ID=:id';
@@ -237,8 +228,18 @@ async function number_of_peopleReadingtheBook(bookid)
     return (await database.execute(sql,binds)).rows
     
 }
+async function genre_of_book(book_id)
+{
+    let sql='SELECT Name as genre_name  FROM  GENRE G JOIN OF_GENRE OG ON(G.GENRE_ID=OG.GENRE_ID) WHERE BOOK_ID=:bookid';
+    let binds={
+        bookid:book_id
+    }
+    return (await database.execute(sql,binds)).rows
 
 
 
+}
 
-module.exports={upload_book,get_all_books,getBookByName,getBookDetails,getBookByAuthor,getBookBygenre,number_of_peopleReadingtheBook}
+
+
+module.exports={upload_book,get_all_books,getBookByName,getBookDetails,getBookByAuthor,getBookBygenre,number_of_peopleReadingtheBook,genre_of_book}

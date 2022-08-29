@@ -8,6 +8,7 @@ const jwt=require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
 var cookie = require('cookie');
 const fileupload=require('express-fileupload');
+const {verify}=require('./middleware/user-verification')
 
 
 
@@ -25,6 +26,9 @@ const book=require('./route/Admin_route/Admin_panel')
 const book_list=require('./route/Books/Book-list');
 const bookshelve=require('./route/Books/add_bookshelve');
 const review=require('./route/Review/add_review')
+const add_author=require('./route/Admin_route/Add_author')
+const follow_author=require('./route/Author/Author')
+const userfollowing=require('./route/users/user-following')
 //var oracleDbStore = require('express-oracle-session')(session);
 const port=process.env.port|| 3000;
 
@@ -48,18 +52,23 @@ app.use(morgan('combined'));
 app.use('/api',user)
 app.use('/',user_profile)
 app.use('/',book_upload)
+app.use('/',add_author)
 app.use('/Admin',book)
 app.use('/',book_list)
 app.use('/',bookshelve);
-app.use('/',review)
+app.use('/',review);
+app.use('/',follow_author)
+app.use('/',userfollowing)
 
 
 
 app.get('/',function(req,res)
-{   let msg=[];  
-   res.render('Home',{ msg:msg,error:[]})
+ {  
+    let msg=[];  
+    res.render('Home',{ msg:msg,error:[]})
 
-   
+
+  
 })
 
 

@@ -1,0 +1,53 @@
+.container{
+    margin: 0%;
+}
+.inner{
+    overflow: hidden;
+}
+
+.inner img{
+    transition: all 1.5s ease;
+    
+}
+
+.inner:hover img{
+    transform: scale(1.3);
+}
+
+.card-img-top{
+ width: 13rem;
+ height: 15rem;
+ object-fit: contain;
+ background: transparent;
+}
+
+.card{
+    width: 15rem;
+    height: 20rem;
+    border: transparent;
+    background: transparent;
+    background-color: transparent;
+}
+
+.card-title{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: oblique;
+    opacity: 0.8;
+}
+
+.card-text{
+    color: rgb(0, 0, 0);
+    text-align: right;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: smaller;
+    font-style: italic;
+    font-weight:lighter;
+    opacity: 0.7;
+}
+
+.row{
+    padding-left: 20rem;
+}

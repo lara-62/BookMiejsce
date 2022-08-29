@@ -57,14 +57,14 @@ async function getuserbookself(userid)
 async function gethasreadbooks(user_id)
 {
     let sql='SELECT b.BOOK_ID AS BOOK_ID, TITLE,PUBLICATION_DATE,b.IMAGE_URL as IMAGE_URL,DESCRIPTION,ISBN,LANGUAGES,NUMBER_OF_PAGES ,u.FULL_NAME as AUTHOR_NAME,'+ 
-    ' p.PUBLISHER_NAME ,g.NAME as genre_name,p.PUBLISHER_ID,g.GENRE_ID,u.USER_ID ,h.DATE_ADDED'+
+    ' p.PUBLISHER_NAME ,p.PUBLISHER_ID,u.USER_ID ,h.DATE_ADDED'+
     ' FROM BOOKS b JOIN'+
     ' WRITES w ON(b.BOOK_ID=w.BOOK_ID)'+
     ' JOIN USERS u ON (w.USER_ID=u.USER_ID)'+
-    ' JOIN OF_GENRE of_g'+
-    ' ON (b.BOOK_ID=of_g.BOOK_ID)'+
-    ' JOIN GENRE g'+
-    ' ON(of_g.GENRE_ID=g.GENRE_ID)'+
+    // ' JOIN OF_GENRE of_g'+
+    // ' ON (b.BOOK_ID=of_g.BOOK_ID)'+
+    // ' JOIN GENRE g'+
+    // ' ON(of_g.GENRE_ID=g.GENRE_ID)'+
     ' JOIN PUBLISHER p'+
     ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)'+
     '  JOIN HAS_READ  h'+
@@ -78,14 +78,14 @@ async function gethasreadbooks(user_id)
 async function getreadingbooks(user_id)
 {
     let sql='SELECT b.BOOK_ID AS BOOK_ID, TITLE,PUBLICATION_DATE,b.IMAGE_URL as IMAGE_URL,DESCRIPTION,ISBN,LANGUAGES,NUMBER_OF_PAGES ,u.FULL_NAME as AUTHOR_NAME,'+ 
-    ' p.PUBLISHER_NAME ,g.NAME as genre_name,p.PUBLISHER_ID,g.GENRE_ID,u.USER_ID,h.DATE_ADDED'+
+    ' p.PUBLISHER_NAME ,p.PUBLISHER_ID,u.USER_ID,h.DATE_ADDED'+
     ' FROM BOOKS b JOIN'+
     ' WRITES w ON(b.BOOK_ID=w.BOOK_ID)'+
     ' JOIN USERS u ON (w.USER_ID=u.USER_ID)'+
-    ' JOIN OF_GENRE of_g'+
-    ' ON (b.BOOK_ID=of_g.BOOK_ID)'+
-    ' JOIN GENRE g'+
-    ' ON(of_g.GENRE_ID=g.GENRE_ID)'+
+    // ' JOIN OF_GENRE of_g'+
+    // ' ON (b.BOOK_ID=of_g.BOOK_ID)'+
+    // ' JOIN GENRE g'+
+    // ' ON(of_g.GENRE_ID=g.GENRE_ID)'+
     ' JOIN PUBLISHER p'+
     ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)'+
     ' JOIN READING  h'+
@@ -99,15 +99,15 @@ async function getreadingbooks(user_id)
 }
 async function getwillreadbooks(user_id)
 {
-    let sql = 'SELECT b.BOOK_ID AS BOOK_ID, TITLE,PUBLICATION_DATE,b.IMAGE_URL as IMAGE_URL,DESCRIPTION,ISBN,LANGUAGES,NUMBER_OF_PAGES ,u.FULL_NAME as AUTHOR_NAME,' +
-        ' p.PUBLISHER_NAME ,g.NAME as genre_name,p.PUBLISHER_ID,g.GENRE_ID,u.USER_ID,h.DATE_ADDED' +
+    let sql = 'SELECT DISTINCT b.BOOK_ID  AS BOOK_ID , TITLE,PUBLICATION_DATE,b.IMAGE_URL as IMAGE_URL,DESCRIPTION,ISBN,LANGUAGES,NUMBER_OF_PAGES ,u.FULL_NAME as AUTHOR_NAME,' +
+        ' p.PUBLISHER_NAME ,p.PUBLISHER_ID,u.USER_ID,h.DATE_ADDED' +
         ' FROM BOOKS b JOIN' +
         ' WRITES w ON(b.BOOK_ID=w.BOOK_ID)' +
         ' JOIN USERS u ON (w.USER_ID=u.USER_ID)' +
-        ' JOIN OF_GENRE of_g' +
-        ' ON (b.BOOK_ID=of_g.BOOK_ID)' +
-        ' JOIN GENRE g' +
-        ' ON(of_g.GENRE_ID=g.GENRE_ID)' +
+        // ' JOIN OF_GENRE of_g' +
+        // ' ON (b.BOOK_ID=of_g.BOOK_ID)' +
+        // ' JOIN GENRE g' +
+        // ' ON(of_g.GENRE_ID=g.GENRE_ID)' +
         ' JOIN PUBLISHER p' +
         ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)' +
         '   JOIN WILL_READ  h' +

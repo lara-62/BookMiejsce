@@ -5,7 +5,7 @@
          <img src="http://localhost:3000/image/Books/<%=book[0].IMAGE_URL%>" alt="" class="bookdetail_cover">
          <div class="btn-group">
             <form action="/add_shelve/<%=book[0].BOOK_ID%>" method="post">
-              <button class="btn btn-dark btn-lg button-left" name="bookbutton" type="submit" value="Want to Read">
+              <button class="btn  btn-lg button-left" name="bookbutton" type="submit" value="Want to Read" id="wanttoreadbutton" onclick="want_to_read_bttonchange()">
                 Want to Read
               </button>
             </form>
@@ -29,7 +29,12 @@
     <div class="book_detail_description">
         <p ><%= book[0].DESCRIPTION%></p>
     </div>
-    <button class="collapse_button" type="button" data-bs-toggle="collapse" data-bs-target="#book_info" aria-expanded="false" aria-controls="collapseExample">
+     <div class="genre_show">
+      <% for(e of genre){%>
+       <span class="genre_name"><%=e.GENRE_NAME.toUpperCase()%></span>
+      <%}%>
+     </div>
+    <button style="margin-top:2rem;" class="collapse_button" type="button" data-bs-toggle="collapse" data-bs-target="#book_info" aria-expanded="false" aria-controls="collapseExample">
       More Book info <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
       </svg>
@@ -40,7 +45,6 @@
           <p>Publisher name:<%= book[0].PUBLISHER_NAME%></p>
           <p>Publication Date:<%= book[0].PUBLICATION_DATE.toISOString().slice(0,10)%></p>
           <p>Language:<%= book[0].LANGUAGES%></p>
-          <p>Genre:<%= book[0].GENRE_NAME%></p>
           <p>Number of pages:<%=book[0].NUMBER_OF_PAGES%> pages</p>
           <p>ISBN:<%=book[0].ISBN%></p>
           
@@ -60,7 +64,29 @@
       </div>
       <hr>
       <div>
-        About the author
+        <h1>About the author</h1>
+        <div class="row about-author">
+         <div class="col col-lg-12 ">
+         <img src="http://localhost:3000/image/user/<%=author[0].IMAGE_URL%>" alt="" class="author-image">
+          <span class="author-title"><a href="/author_detail/<%= author[0].USER_ID%>"><%=author[0].AUTHOR_NAME%></a></span> <br>
+          <span class="text-muted book_number"><%=author_book_count[0].COUNT%> books in this site</span>
+          <span class="text-muted book_number" style="margin-left:0.5rem">.<%=author_follower[0].COUNT%> Followers</span>
+         </div>
+         <div class="col col-lg-12 author_description">
+           <DIV class="author_des">
+            <%=author[0].ABOUT%>
+           </DIV>
+           <div class="author_follow">
+           <form action="/follow_author/<%=user.USER_ID%>/<%= book[0].USER_ID%>/<%= book[0].BOOK_ID%>" method="post">
+            <button class="btn " id="follow" type="submit">
+             
+            </button>
+           </form>
+           </div>
+          
+         </div>
+
+        </div>
       </div>
       <hr>
       <div class="review_section" >
@@ -241,15 +267,15 @@
               
               <div class="col-lg-12 d-grid  gap-2 gap-between ">
             
-                <button type="submit" class="btn btn-lg btn-outline-dark button_round" style="color:black ; border-color:black; font-size: 18px;" name='bookbutton'value="Want to Read"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                <button type="submit" class="btn btn-lg  button_round" id="wanttoreadbutton2" onclick="want_to_read_bttonchange() "style="color:black ; border-color:black; font-size: 18px;" name='bookbutton'value="Want to Read"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                   </svg>Want to Read</button>
               </div>
               <div class="col-lg-12 d-grid  gap-2 gap-between">
-                <button type="submit" class="btn btn-lg btn-outline-dark button_round" style="color:black ;border-color:black;font-size: 18px;" name="bookbutton"value="Currently Reading">Currently Reading</button>
+                <button type="submit" class="btn btn-lg  button_round" id="Reading"style="color:black ;border-color:black;font-size: 18px;" name="bookbutton"value="Currently Reading">Currently Reading</button>
               </div>
               <div class="col-lg-12 d-grid  gap-2 gap-between">
-                <button type="submit" class="btn btn-lg btn-outline-dark button_round" style="color:black ;border-color:black;font-size: 18px;" name="bookbutton" value="Read">Read</button>
+                <button type="submit" class="btn btn-lg  button_round" id="hasread" style="color:black ;border-color:black;font-size: 18px;" name="bookbutton" value="Read">Read</button>
               </div>
               
              
@@ -262,4 +288,103 @@
       </div>
     </div>
   </div>
+  <script>
+    window.addEventListener("load",(event)=>{
+      let count1= "<%= user_Reading[0].COUNT%>";
+      console.log(count1);
+      if(count1>0)
+      {
+        let element =document.getElementById("Reading");
+        element.classList.add('btn-dark');
+        element.style.color="white"
+       element.innerHTML='Added to Reading shelf';
+      }
+      else
+      {
+        let element =document.getElementById("Reading");
+       
+       
+       element.innerHTML='Currently Reading';
+       
+       element.classList.add('btn-outline-dark');
+      }
+      let count2= "<%= user_hasread[0].COUNT%>";
+      console.log(count2);
+      if(count2>0)
+      {
+        let element =document.getElementById("hasread");
+        element.classList.add('btn-dark');
+        element.style.color="white"
+       element.innerHTML='Added to Read shelf';
+      }
+      else
+      {
+        let element =document.getElementById("hasread");
+       
+       
+       element.innerHTML='Read';
+       
+       element.classList.add('btn-outline-dark');
+      }
+      let count3= "<%= user_willread[0].COUNT%>";
+      console.log(count2);
+      if(count3>0)
+      {
+        let element =document.getElementById("wanttoreadbutton");
+        element.classList.add('btn-dark');
+        element.style.color="white"
+       element.innerHTML='Added to shelf';
+       let element2 =document.getElementById("wanttoreadbutton2");
+        element2.classList.add('btn-dark');
+        element2.style.color="white"
+       element2.innerHTML='Added to WantToRead shelf';
+      }
+      else
+      {
+        let element =document.getElementById("wanttoreadbutton2");
+       
+       
+       element.innerHTML='Want To Read';
+       
+       element.classList.add('btn-outline-dark');
+       
+       let element2 =document.getElementById("wanttoreadbutton");
+       
+       
+       element2.innerHTML='Want To Read';
+       
+       element2.classList.add('btn-outline-dark');
+      }
+      let count4= "<%= author_following[0].COUNT%>";
+      if(count4>0)
+      {
+        let element =document.getElementById("follow");
+        element.innerHTML='Following..';
+        element.classList.add('btn-success');
+       
+      }
+      else
+      {
+        let element =document.getElementById("follow");
+        element.innerHTML='Follow';
+        element.classList.add('btn-dark');
+      }
+     let user="<%=user.USER_ID%>"
+     console.log(user);
+    })
+    function want_to_read_bttonchange()
+    {  event.preventDefault()
+      const element=document.getElementById("wanttoreadbutton");
+      const element2=document.getElementById("wanttoreadbutton2");
+      element.classList.remove('btn-dark');
+     element.classList.add('btn-outline-dark');
+     element.innerHTML='Added to shelf'
+     element2.classList.remove('btn-dark');
+     element2.classList.add('btn-outline-dark');
+     element2.innerHTML='Added to shelf'
+
+     
+     
+    }
+  </script>
 <%- include('../Footer')-%>

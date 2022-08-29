@@ -38,15 +38,17 @@
       </nav>
     
      
-      <div  class="homepage_image">
+      <div class="homepage_image">
         <% if (msg.length>0) { %>
-        <% for (e of msg) { %>
-        <div class="alert alert-success alert-dismissible fade show reg-alert" role="alert">
-         <%= e %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-     </div>
-      <% } %>
-      <% } %>
+          <% for (e of msg) { %>
+            <div class="alert alert-success alert-dismissible fade show reg-alert" role="alert">
+              <%= e %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+              <% } %>
+                <h1 class="homepage_title">Keep Track of Your Book</h1>
+                <h2 class="homepage_title">Read anytime,anywhere</h2>
       </div>
   
     

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <link rel="stylesheet" href="profile3.css">
+  <link rel="stylesheet" href="profile1.css">
+  <link rel="stylesheet" href="profile2.css">
+</head>
+
+<body style="padding-left:2rem; padding-top: 30px;">
+            <%- include('profile1.ejs') %>
+        <div class="col-xl-4 order-xl-2" style="padding-left:170px">
+  <div class="grey500Box userInfoBox" style="width: 460px;">
+    <div class="grey500Box">
+      <div class="grey500Box userInfoBoxContent" style="margin-right: 20px;">
+
+        <h1 class="userProfileName snip-h1" style="color:  #11cdef;">
+          Mubasshira Musarrat
+        </h1>
+
+
+        <div class="infoBoxRowTitle">Activity</div>
+        <div class="infoBoxRowItem">
+          Joined in February 2020,
+          last active this month
+        </div>
+        <br class="clear">
+
+
+
+      </div>
+    </div>
+    <div class="grey500Box"></div>
+  </div>
+  <div class="clear"></div>
+
+  <br>
+
+
+  <div class=" clearFloats bigBox">
+    <div class="h2Container gradientHeaderContainer">
+      <h2 class="brownBackground">Mubasshira’s Bookshelf</h2>
+    </div>
+    <div class="">
+      <div class="bigBoxContent containerWithHeaderContent" style="font-size: 16px ;">
+        <div class="infoBoxRowTitle">Has Read</div>
+        <div class="infoBoxRowItem">
+          12
+        </div>
+        <br class="clear">
+
+        <div class="infoBoxRowTitle">To Read</div>
+        <div class="infoBoxRowItem">
+          5
+        </div>
+        <br class="clear">
+
+        <div class="infoBoxRowTitle">Currently Reading</div>
+        <div class="infoBoxRowItem">
+          War & Peace
+        </div>
+        <br class="clear">
+
+        <div class="infoBoxRowTitle">Favourite Genre</div>
+        <div class="infoBoxRowItem">
+          Mystery
+        </div>
+        <br class="clear">
+
+        <br class="clear">
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class=""></div>
+  </div>
+
+<!--authors user follow-->
+  <div class=" clearFloats bigBox" style="size: 1000px; width: 680px; ">
+    <div class="h2Container gradientHeaderContainer">
+      <h2 class="brownBackground">Favourite Authors</h2>
+    </div>
+    <br/>
+    <%-include('following-author.ejs')%>
+    <div class="">
+      <div class="bigBoxContent containerWithHeaderContent">
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class=""></div>
+  </div>
+
+
+  <div class=" clearFloats bigBox">
+    <div class="h2Container gradientHeaderContainer">
+      <h2 class="brownBackground">Followers</h2>
+    </div>
+    <div class="">
+      <div class="bigBoxContent containerWithHeaderContent">
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class=""></div>
+  </div>
+
+  <div class=" clearFloats bigBox">
+    <div class="h2Container gradientHeaderContainer">
+      <h2 class="brownBackground">Following</h2>
+    </div>
+    <div class="">
+      <div class="bigBoxContent containerWithHeaderContent">
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class=""></div>
+  </div>
+
+</div>
+</body>
+
+</html>

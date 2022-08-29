@@ -1,0 +1,59 @@
+<%-include('../home_page_navbar.ejs')-%>
+    
+<div class="container " style="width:50%;margin:2rem auto">
+  <div class="row" >
+     <div class="col col-lg-12">
+      <%if(Reading.length>0){%>
+      <div class="Reading_type">Currently Reading</div>
+      <%}%>
+      <% for (e of Reading){%>
+      <div class="book_info">
+        <img src="http://localhost:3000/image/Books/<%=e.IMAGE_URL%>" alt="image">
+        <span><a href="/Book_detail/<%= e.BOOK_ID%>"> <%=e.TITLE%></a></span>
+        <span><a href="/author_detail/<%= e.USER_ID%>"> <%=e.AUTHOR_NAME%></a></span>
+        <span>Rating Rating Rating Rating Rating</span>
+        <span>Your review</span>
+        <span><%=e.DATE_ADDED.toISOString().slice(0,10)%></span>
+      </div>
+        <%}%>
+
+     </div>
+  </div>
+  <div class="row" >
+    <div class="col col-lg-12">
+      <%if(willread.length>0){%>
+     <div class="Reading_type">Want to Read</div>
+     <%}%>
+     <% for (e of willread){%>
+     <div class="book_info">
+       <img src="http://localhost:3000/image/Books/<%=e.IMAGE_URL%>" alt="image">
+       <span><a href="/Book_detail/<%= e.BOOK_ID%>"> <%=e.TITLE%></a></span>
+       <span><a href="/author_detail/<%= e.USER_ID%>"> <%=e.AUTHOR_NAME%></a></span>
+       <span>Rating Rating Rating Rating Rating</span>
+       <span>Your review</span>
+       <span><%=e.DATE_ADDED.toISOString().slice(0,10)%></span>
+     </div>
+       <%}%>
+
+    </div>
+ </div>
+ <div class="row" >
+  <div class="col col-lg-12">
+    <%if(hasread.length>0){%>
+   <div class="Reading_type">Read</div>
+    <%}%>
+   <% for (e of hasread){%>
+   <div class="book_info">
+     <img src="http://localhost:3000/image/Books/<%=e.IMAGE_URL%>" alt="image">
+     <span><a href="/Book_detail/<%= e.BOOK_ID%>"> <%=e.TITLE%></a></span>
+     <span><a href="/author_detail/<%= e.USER_ID%>"> <%=e.AUTHOR_NAME%></a></span>
+     <span>Rating Rating Rating Rating Rating</span>
+     <span>Your review</span>
+     <span><%=e.DATE_ADDED.toISOString().slice(0,10)%></span>
+   </div>
+     <%}%>
+
+  </div>
+</div>
+</div>
+<%- include('../Footer')-%>

@@ -1,0 +1,110 @@
+<%-include('../home_page_navbar.ejs')-%>
+<div class="row  wrap " style="height:100vh">
+    <div class="col col-lg-4 " style="position:fixed;">
+       <div class="bookdetail_cover_container" >
+         <img src="http://localhost:3000/image/user/<%=author[0].IMAGE_URL%>" alt="" class="bookdetail_cover">
+         <div class="btn-group">
+            <form action="/follow_author/<%=user.USER_ID%>/<%= author[0].USER_ID%>" method="post">
+              <button class="btn  btn-lg button-round" type="submit"  id="follow" style=" margin-left:1rem;  width:12rem">
+                Follow
+              </button>
+            </form>
+      
+          </div>
+          
+       </div>
+      
+
+    
+    </div>
+    <div class="col col-lg-8" style="margin-left:32rem; justify-content:space-between ;height:100vh;">
+     <h1><%= author[0].AUTHOR_NAME.toUpperCase()%></h1>
+     
+   
+   <p class="text-muted">.<%=author_book_count[0].COUNT%> books in this site</p>
+   <p class="text-muted">.<%=author_follower[0].COUNT%> Followers</p>
+    <div class="book_detail_description">
+        <p ><%=author[0].ABOUT%></p>
+    </div>
+    
+    <button style="margin-top:2rem;" class="collapse_button" type="button" data-bs-toggle="collapse" data-bs-target="#author_info" aria-expanded="false" aria-controls="collapseExample">
+      More Author info <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </button>
+  
+    <div class="book_information collapse text-muted" id="author_info">
+        <div>
+          <% if(author[0].DATE_OF_BIRTH!=undefined){%>
+            <p>Born: <%= author[0].DATE_OF_BIRTH.toISOString().slice(0,10)%></p>
+            <%}%>
+            <p>Address:<%= author[0].ADDRESS%></p>
+            <% if(author[0].GENDER==='F'){%>
+            <P>Gender:Female</P>
+            <%} else{%>
+            <P>Gender:Male</P>
+            <%}%>
+            
+          
+        </div>
+    </div>
+    <hr>
+    <div style="text-align: center ;"> 
+        <h4>Books of <%=author[0].AUTHOR_NAME%></h4>
+        <section >
+    
+    
+            <div class="row Author_book_container ">
+              <% if (book.length>0){ %>
+                <% for(e of book){ %>
+                  <div class="col-lg-3 col-md-6 ">
+                    <div class="card ">
+          
+                      <img src="http://localhost:3000/image/Books/<%=e.IMAGE_URL%>" class="card-img-top book-cover" alt="...">
+          
+                      <div class="card-body book_card ">
+                        <h5 class="card-title" style="font-weight:bold ;">
+                          <%= e.TITLE.toUpperCase()%>
+                        </h5>
+                        <p class="card-text"></p>
+                        <a href="/Book_detail/<%= e.BOOK_ID%>" class="btn btn-warning"><i
+                            class="fas fa-book fa-1x brand-icon"></i>View Book</a>
+                      </div>
+          
+                    </div>
+                  </div>
+                  <%}%>
+                    <%}%>
+            </div>
+          </section>
+    </div>
+    </div>
+    </div>
+    
+   
+    
+    
+      
+  <script>
+    window.addEventListener("load",(event)=>{
+      
+      let count4= "<%= author_following[0].COUNT%>";
+      if(count4>0)
+      {
+        let element =document.getElementById("follow");
+        element.innerHTML='Following..';
+        element.classList.add('btn-success');
+       
+      }
+      else
+      {
+        let element =document.getElementById("follow");
+        element.innerHTML='Follow';
+        element.classList.add('btn-dark');
+      }
+     let user="<%=user.USER_ID%>"
+     console.log(user);
+    })
+   
+  </script>
+<%- include('../Footer')-%>

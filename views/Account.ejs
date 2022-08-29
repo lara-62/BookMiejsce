@@ -23,7 +23,7 @@
               <a class="nav-link active" aria-current="page" href="/api//Home_page">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#">My Books</a>
+              <a class="nav-link " aria-current="page" href="/your_book">My Books</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -68,7 +68,7 @@
               </form>
             </li>
             <li>
-              <form action="">
+              <form action="/user-following" method="get">
                 <button class="dropdown-item"> Following</button>
               </form>
             </li>
@@ -124,7 +124,7 @@
                 <%}  else{%>
                 <p>No book to this self </p>
                 <%}%>
-                <p> <button class="btn btn-link">view all books</button></p>
+                <p><a href="/Reading_book">view all books</a></p>
               </div>
               
 
@@ -157,7 +157,7 @@
                   <%}else{%>
                   <p>No book to this self </p>
                   <%}%>
-                <p> <button class="btn btn-link">view all books</button></p>
+                  <p><a href="/hasread_book">view all books</a></p>
               </div>
               <hr>
               <div class="col-lg-12">
@@ -188,7 +188,7 @@
                   <%}else{%>
                   <p>No book to this self </p>
                   <%}%>
-                <p> <button class="btn btn-link">view all books</button></p>
+                  <p><a href="/willread_book">view all books</a></p>
               </div>
             </div>
           </div>
