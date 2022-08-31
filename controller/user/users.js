@@ -79,7 +79,7 @@ async function post(req, res, next) {
                                     let binds=
                                     {
                                         user_id:user1.id,
-                                        username:req.body.username,
+                                        username:req.body.username.toLowerCase(),
                                         password:user.hashedPassword,
                                         joindate:date1
                                     }

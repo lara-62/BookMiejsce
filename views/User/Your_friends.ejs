@@ -1,0 +1,35 @@
+<%-include('../home_page_navbar.ejs')-%>
+
+    <div class="follow_page">
+
+      <span><a href="/profile1/<%=user.USER_ID%>"><%=user.USER_NAME%></a>>Your Friends</span>
+       <div class="row">
+        <% for(e of people){%>
+        <div class="col col-lg-12 follow_page_card" >
+            <div class="author_follow3">
+            <img src="http://localhost:3000/image/user/<%=e.IMAGE_URL%>" alt="" class="people-image-following">
+            <span class="author-title"><%=e.USER_NAME%></span> <br>
+            <span class="text-muted book_number">member since <%=e.JOINING_DATE.toISOString().slice(0,10)%></span>
+            <br>
+            <span class="text-muted book_number">Friends of  people</span>
+            </div>
+            <div class="author_follow2">
+                <form action="/profile1/<%=e.USER_ID%>" method="get">
+                 <button class="btn btn-success">
+                    VIEW DETAIL
+                 </button>
+                </form>
+            </div>
+        </div>
+        
+        <hr>
+        <%}%>
+        
+       </div>
+    </div>
+    <script>
+       
+          
+      </script>
+
+<%- include('../Footer')-%>

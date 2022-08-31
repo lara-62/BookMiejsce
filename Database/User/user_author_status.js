@@ -14,6 +14,11 @@ async function author_follower_count(binds)
     let sql=`SELECT COUNT(*) AS COUNT FROM FOLLOW_AUTHOR WHERE AUTHOR_ID=:author_id`
     return (await database.execute(sql,binds)).rows;
 }
+async function user_following_count(binds)
+{
+    let sql=`SELECT COUNT(*) AS COUNT FROM FOLLOW_AUTHOR WHERE USER_ID=:user_id`
+    return (await database.execute(sql,binds)).rows;
+}
 async function user_following_allauthor(binds)
 {
     let sql=`SELECT U.FULL_NAME AS AUTHOR_NAME,U.USER_ID AS AUTHOR_ID,U.DATE_OF_BIRTH,U.ADDRESS,U.IMAGE_URL,U.GENDER,A.ABOUT
@@ -36,4 +41,4 @@ async function follow_author(binds)
     }
 }
 
-module.exports={user_following_author,user_following_allauthor,follow_author,author_follower_count}
+module.exports={user_following_author,user_following_allauthor,follow_author,author_follower_count,user_following_count}

@@ -1,11 +1,16 @@
 const express=require('express');
 const router=express.Router();
-const books=require('../../Database/Books/books')
+const books=require('../../Database/Books/books');
+const { route } = require('../signup_route');
 router.get('/upload_book',(req,res)=>
 {
     res.render('Books/add_book.ejs',{
         msg:[]
     });
+})
+router.post('/edit_book',async(req,res)=>
+{
+    res.render('Admin/edit-book.ejs')
 })
 router.post('/upload_book',async(req,res)=>
 {  
@@ -13,6 +18,7 @@ router.post('/upload_book',async(req,res)=>
     let cover;
     let uploadpath;
     let errors=[];
+    console.log(req.files);
     if(!req.files || Object.keys(req.files).length==0)
     {
         errors.push('no file uploaded');

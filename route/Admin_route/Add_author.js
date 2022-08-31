@@ -1,7 +1,42 @@
 const express=require('express');
 const router=express.Router();
-const author=require('../../Database/Author/author')
+const DB_author=require('../../Database/Author/author')
+router.post('/edit_author',async(req,res)=>
+{      
+      const authorname=req.body.author_name.toLowerCase();
+      let author = await DB_author.get_author_infoBYName(authorname);
+      res.render('Admin/edit-author.ejs',{
+        author:author
+      });
+})
+router.post('/update_author/:author_id',async(req,res)=>{
+    let binds={
+        fullname:req.body.fullname,
+        gender:req.body.gender,
+        address:req.body.address,
+        userid:req.params.author_id
 
+    }
+    await DB_author.update_author_info(binds)
+    if(req.body.email!='')
+    {
+        await DB_author.update_author_email({email:req.body.email,userid:req.params.author_id})
+    }
+    if(req.body.bio!='')
+    {
+        await DB_author.update_author_bio({bio:req.body.bio,userid:req.params.author_id}) 
+    }
+    if(req.body.Dob!='')
+    {
+        await DB_author.update_author_Dob({dob:req.body.Dob,userid:req.params.author_id}) 
+    }
+    if(req.body.about!='')
+    {
+        await DB_author.update_author_About({about:req.body.about,userid:req.params.author_id})  
+    }
+    res.redirect('/Admin/Home')
+    console.log(req.body);
+})
 router.get('/add_Author',(req,res)=>
 {
     res.render('Author/add_author.ejs',{
@@ -10,7 +45,7 @@ router.get('/add_Author',(req,res)=>
 })
 router.post('/add_Author',(req,res)=>
 {
-    let full_name=req.body.fullname.toLowerCase();
+    let full_name=req.body.fullname;
     let address=req.body.address;
     let About=req.body.About;
     let Date_of_birth=req.body.Dob;

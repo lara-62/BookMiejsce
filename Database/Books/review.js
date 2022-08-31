@@ -4,7 +4,7 @@ const database = new config.Database_class();
 
 async function add_review(binds)
 {
-    let sql='INSERT INTO REVIEW(REVIEW_BODY,DATE_ADDED,USER_ID,BOOK_ID) VALUES(:review_body,TO_DATE(:date_added,\'YYYY-MM-DD\'),:user_id,:book_id)';
+    let sql='INSERT INTO REVIEW(REVIEW_BODY,DATE_ADDED,RATING,USER_ID,BOOK_ID) VALUES(:review_body,TO_DATE(:date_added,\'YYYY-MM-DD\'),:rating,:user_id,:book_id)';
     return (await database.execute(sql,binds));
 }
 async function add_like(binds)
@@ -58,4 +58,9 @@ async function all_comments_of_books(book_id)
    }
    return (await database.execute(sql,binds)).rows;
 }
-module.exports={add_review,get_review_info_of_a_book,review_count,add_like,like_count,add_comment,all_comments_of_books,comment_count}
+async function get_user_review(binds)
+{
+  let sql=`SELECT * FROM REVIEW WHERE USER_ID=:user_id`
+  return (await database.execute(sql,binds)).rows;
+}
+module.exports={add_review,get_review_info_of_a_book,review_count,add_like,like_count,add_comment,all_comments_of_books,comment_count,get_user_review}

@@ -7,6 +7,7 @@ const DB_bookinfo=require('../../Database/Books/addToshelf')
 const DB_author=require('../../Database/Author/author')
 const DB_user=require('../../Database/User/user_Reading_status')
 const DB_author_follow=require('../../Database/User/user_author_status')
+const DB_recommend=require('../../Database/Recommendation/recommendation')
 const { each } = require('async')
 
 router.post('/Book-list',verify,async(req,res)=>{
@@ -27,6 +28,7 @@ router.post('/Book-list',verify,async(req,res)=>{
     {
       msg.push('There is no book by this name');
     }
+    let friend_recommend=await DB_recommend.Your_friends_are_reading({user_id:req.user.USER_ID})
     console.log(result)
     console.log(req.user);
     res.render('Books/Book_list.ejs',
@@ -36,6 +38,36 @@ router.post('/Book-list',verify,async(req,res)=>{
         book:result
     });
     
+})
+router.get('/friends_book',verify,async(req,res)=>
+{
+  let msg=[]
+  let friend_recommend=await DB_recommend.Your_friends_are_reading({user_id:req.user.USER_ID})
+  if(friend_recommend.length<1)
+  {
+    msg.push('There is no more book');
+  }
+  res.render('Books/Book_list.ejs',
+  {
+      user:req.user,
+      msg:msg,
+      book:friend_recommend
+  });
+})
+router.get('/authors_book',verify,async(req,res)=>
+{
+  let msg=[]
+  let author_recommend=await DB_recommend.books_of_Author_YouareFollowing({user_id:req.user.USER_ID})
+  if(author_recommend.length<1)
+  {
+    msg.push('There is no more book');
+  }
+  res.render('Books/Book_list.ejs',
+  {
+      user:req.user,
+      msg:msg,
+      book:author_recommend
+  });
 })
 router.get('/Book_detail/:id',verify,async(req,res)=>{
   console.log(req.params.id);
@@ -131,7 +163,7 @@ router.get('/your_book',verify,async(req,res)=>{
   let hasread=await DB_bookinfo.gethasreadbooks(req.user.USER_ID)
   let willread=await DB_bookinfo.getwillreadbooks(req.user.USER_ID)
   let Reading=await DB_bookinfo.getreadingbooks(req.user.USER_ID)
-  
+  let review1=await review.get_user_review({user_id:req.user.USER_ID})
   console.log(Reading);
   console.log(willread);
   console.log(hasread);
@@ -140,7 +172,8 @@ router.get('/your_book',verify,async(req,res)=>{
       user:req.user,
       hasread:hasread,
       Reading:Reading,
-      willread:willread
+      willread:willread,
+      review:review1
     });
 
 })
@@ -148,7 +181,7 @@ router.get('/Reading_book',verify,async(req,res)=>{
 
  
   let Reading=await DB_bookinfo.getreadingbooks(req.user.USER_ID)
-  
+  let review1=await review.get_user_review({user_id:req.user.USER_ID})
   console.log(Reading);
  
     res.render('Books/my_books.ejs',
@@ -156,14 +189,15 @@ router.get('/Reading_book',verify,async(req,res)=>{
       user:req.user,
       hasread:[],
       Reading:Reading,
-      willread:[]
+      willread:[],
+      review:review1
     });
 
 })
 router.get('/hasread_book',verify,async(req,res)=>{
 
   let hasread=await DB_bookinfo.gethasreadbooks(req.user.USER_ID)
-
+  let review1=await review.get_user_review({user_id:req.user.USER_ID})
   
  
   console.log(hasread);
@@ -172,7 +206,8 @@ router.get('/hasread_book',verify,async(req,res)=>{
       user:req.user,
       hasread:hasread,
       Reading:[],
-      willread:[]
+      willread:[],
+      review:review1
     });
 
 })
@@ -180,6 +215,7 @@ router.get('/willread_book',verify,async(req,res)=>{
 
  
   let willread=await DB_bookinfo.getwillreadbooks(req.user.USER_ID)
+  let review1=await review.get_user_review({user_id:req.user.USER_ID})
   
   
 
@@ -190,9 +226,12 @@ router.get('/willread_book',verify,async(req,res)=>{
       user:req.user,
       hasread:[],
       Reading:[],
-      willread:willread
+      willread:willread,
+      review:review1
     });
 
 })
+
+
 
 module.exports=router;

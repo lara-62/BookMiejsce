@@ -1,6 +1,6 @@
 body {
   min-height: 75rem;
-  font-family: sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 /* .bd-placeholder-img {
     font-size: 1.125rem;
@@ -55,16 +55,20 @@ body {
    .homepage_image
    {
     width: 100vw;
-    height: 30rem;
+    height: 100%;
+    overflow: hidden;
     background-image: url('../image/Home page.jpg');
     
     background-size: contain;
     position: absolute;
     
+    
    }
    .homepage_title
    {
-    color: white;
+    color: rgb(255, 255, 255);
+    text-shadow: white;
+    border: whitesmoke;
     margin: 0rem 2rem;
    }
    h1.homepage_title
@@ -462,6 +466,11 @@ body {
   margin:auto 0.5rem;
   
 }
+.book_info .ratings
+{
+  flex: 2;
+  
+}
 .book_info img
 {
   height: 4rem;
@@ -547,4 +556,11 @@ body {
 {
   flex:1;
   text-align: center;
+}
+.people-image-following
+{
+  width: 10%;
+  float: left;
+  
+  margin-right: 1rem;
 }

@@ -12,7 +12,7 @@ const oracledb = require('oracledb');
             //console.log(err);
         }
         else {
-            const sql = 'SELECT * '+
+            const sql = 'SELECT *'+
             'FROM READER,USERS '+
             'WHERE READER.user_id = :user_id and READER.user_id=USERS.user_id ';
              console.log('yo');

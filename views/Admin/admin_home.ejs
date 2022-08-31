@@ -51,12 +51,48 @@
               </div>
               <div class="col-lg-4">
                 <i class="fas fa-upload fa-4x icon"></i>
-                <h3 class="feature-header">Add publisher.</h3>
+                <form action="/add_publisher" method="post">
+            
+                  <button type="submit" class="button_admin"><h3 class="feature-header">Edit Publisher</h3></button>
+               </form>
                 <p class="feature-text">Add your favourite publisher.</p>
               </div>
         
             </div>
         </div>
+  <hr>
+        <div class="container features">
+          <div class="row">
+            <div class="col-lg-4">
+              <i class="fas fa-book fa-4x icon"></i>
+        <form  >
+          
+                  <button type="button" class="button_admin" data-bs-toggle="modal"  data-bs-target="#ISBN_Modal"> <h3 class="feature-header">Edit Books</h3></button>
+               </form>
+              <p class="feature-text">Edit any information of your books.</p>
+            </div>
+            <div class="col-lg-4">
+              
+              <i class="fas fa-edit fa-4x icon"></i>
+              <form >
+          
+                  <button type="button" class="button_admin"><h3 class="feature-header" data-bs-toggle="modal"  data-bs-target="#Author_Modal">Edit Author</h3></button>
+               </form>
+              <p class="feature-text">Edit any information of Author.</p>
+      
+            </div>
+            <div class="col-lg-4">
+              <i class="fas fa-upload fa-4x icon"></i>
+              <form action="/edit_publisher" method="get">
+          
+                <button type="submit" class="button_admin"><h3 class="feature-header">Add Publisher</h3></button>
+             </form>
+              <p class="feature-text">Edit any information of Author</p>
+            </div>
+      
+          </div>
+      </div>
+        
         <!-- <form action="/upload_book" method="post" enctype="multipart/form-data">
             <input type="file" name="cover" id="" accept="image/*">
             <button type="submit">submit</button>
@@ -107,9 +143,66 @@
 
 
 
+ <div class="modal fade modal-sm" id="Author_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        
+        <form action="/edit_author" method="post">
+          <div class="row">
+            <div class="col-lg-12 gap-between form-floating">
+              
+              <input type="text" name="author_name" class="form-control" id="authorname" placeholder="Search by author name" required>
+              <label for="authorname" class="form-label">Author Name</label>
+            </div>
+            
+            <div class="col-lg-12 d-grid  gap-2 gap-between">
+              <button type="submit" class="btn btn-lg btn-outline-dark">Search</button>
+            </div>
+            
+           
+          </div>
+          
+        </form>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
 
 
-
+<div class="modal fade modal-sm" id="ISBN_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        
+        <form action="/edit_book" method="post">
+          <div class="row">
+            <div class="col-lg-12 gap-between form-floating">
+              
+              <input type="text" name="isbn" class="form-control" id="isbn" placeholder="Search by author name" required>
+              <label for="authorname" class="form-label">ISBN</label>
+            </div>
+            
+            <div class="col-lg-12 d-grid  gap-2 gap-between">
+              <button type="submit" class="btn btn-lg btn-outline-dark">Search</button>
+            </div>
+            
+           
+          </div>
+          
+        </form>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
 
 
 

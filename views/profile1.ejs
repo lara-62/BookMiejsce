@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/CSS/profile1.css" rel="stylesheet">
+
   </head>
 <body >
-  <div class="container-fluid mt--7" style="padding-top: 10%;">
+  <div class="container-fluid mt--7" style="padding-top: 10%; margin-left:35%">
     <div class="row">
       <div class="col-xl-4 order-xl-1 mb-5 mb-xl-0">
         <div class="card card-profile shadow">
@@ -16,15 +18,17 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <a href="#">
-                  <img src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg" class="rounded-circle">
+                  <img src="http://localhost:3000/image/user/<%=people[0].IMAGE_URL%>" class="rounded-circle">
                 </a>
               </div>
             </div>
           </div>
           <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
             <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-sm btn-info mr-4">Follow</a>
-              <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+              <% if(user.USER_ID!=people[0].USER_ID){%>
+              <a href="/follow_friend/<%=people[0].USER_ID%>" id="follow"></a>
+              <% }%>
+             
             </div>
           </div>
           <div class="card-body pt-0 pt-md-4">
@@ -32,15 +36,15 @@
               <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                   <div>
-                    <span class="heading">22</span>
-                    <span class="description">Following</span>
+                    <span class="heading"><%= user_following[0].COUNT%></span>
+                    <span class="description">Author <br>Following</span>
                   </div>
                   <div>
-                    <span class="heading">10</span>
-                    <span class="description">Follower</span>
+                    <span class="heading"><%=friend[0].COUNT%></span>
+                    <span class="description">Followers</span>
                   </div>
                   <div>
-                    <span class="heading">89</span>
+                    <span class="heading"><%=review_count[0].COUNT%></span>
                     <span class="description">Reviews</span>
                   </div>
                 </div>
@@ -48,18 +52,47 @@
             </div>
             <div class="text-center">
               <h3>
-                Jessica Jones<span class="font-weight-light">, 27</span>
+                <%= people[0].USER_NAME%><span class="font-weight-light"></span>
               </h3>
               <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                <i class="ni location_pin mr-2"></i><%= people[0].ADDRESS%>
               </div>
               <hr class="my-4">
-              <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+              <p><%=people[0].BIO%></p>
               <div class="col-lg-7 col-md-10" style="padding-left: 70%;">
-                <a href="#!" class="btn btn-info">Edit profile</a>
+                <% if (user.USER_ID==people[0].USER_ID){%>
+                <a href="/editprofile" class="btn btn-info">Edit profile</a>
+                <%}%>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <script>
+        window.addEventListener("load",(event)=>{
+          let count= "<%= is_friend[0].COUNT%>";
+      if(count>0)
+      {
+        let element =document.getElementById("follow");
+        element.innerHTML='Following..';
+        element.classList.add('btn');
+        element.classList.add('btn-success');
+        element.classList.add('btn-sm');
+
+       
+      }
+      else
+      {
+        let element =document.getElementById("follow");
+        element.innerHTML='Follow';
+        element.classList.add('btn');
+        element.classList.add('btn-sm');
+        element.classList.add('btn-info');
+        element.classList.add('mr-4');
+
+       
+      }
+        })
+       
+      </script>
 </body>

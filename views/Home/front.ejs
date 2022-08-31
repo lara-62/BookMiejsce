@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" href="/CSS/main1.css">
+    <link rel="stylesheet" href="/CSS/main2.css">
+    <link rel="stylesheet" href="/CSSmain3.css">
+</head>
+
+<body> 
+    <!--Header-->
+    <%- include('./home-header.ejs') %>
+    <!--Introduction-->
+    <section class="row align-items-center mc-text--center mc-m-0 mc-pb-10 snipcss-SZR8N snip-section"
+        data-testid="first-section" style="padding-top: 60px; ">
+        <!-- Topmost text-->
+        <div class="col-12 col-lg-5 col-xl-4 order-2 order-lg-1 d-flex mc-p-0 snip-div" style="margin-left: 0px;">
+            <div class="Hero_heroTextWrapper___SCrm snip-div">
+                <h1 class="mc-text--brand mc-text--uppercase mc-text-d2 mc-mt-9 snip-h1">
+                    <div class="snip-div">Books open<br>the world
+                        <span class="d-block mc-text-color--primary snip-span">to us</span>
+                    </div>
+                </h1>
+                <p class="mc-mt-4 mc-mb-9 mc-text-large mc-opacity--hinted snip-p">Gather & share your knowledge.</p>
+            </div>
+        </div>
+        <!-- Library image at right-->
+        <div class="col-12 col-lg-7 col-xl-8 order-1 order-lg-2 mc-p-0 snip-div" style="height: 650px;"><span
+                style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;padding-top:60%"
+                class="snip-span"></span><img alt="Books" sizes="100vw"
+                src="https://assets.weforum.org/article/image/responsive_big_webp_hySrQhk9QgN45B-0z8PR0bd8ZRyDZ9LnvzPSGaIb91Q.webp"
+                style="position:absolute;top: 0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%">
+            </span>
+        </div>
+    </section>
+
+    <!--Showing Authors-->
+    <section data-testid="second-section" style="padding-top: 5rem ;">
+        <%- include('./section2.ejs') %>
+    </section>
+
+    <!--Showing Best seller books-->
+    <section data-testid="third-section" style="padding-top: 5rem ;">
+        <%- include('./section3.ejs') %>
+    </section>
+
+
+    <!--Showing Reviews-->
+    <section data-testid="fifth-section" style="padding-top: 5rem ;">
+        <%- include('./section5.ejs') %>
+    </section>
+    <!--Footer-->
+    <section  style="padding-top: 10rem; padding-bottom: 5rem; text-align: center;">
+        <%- include('./footer.ejs') %>
+    </section>
+
+    <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3 class="title-signin">Sign in with email</h3>
+              <% if (error.length>0) { %>
+                <% for (e of error) { %>
+                <div class="alert alert-warning alert-dismissible fade show " role="alert">
+                 <%= e %>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+             </div>
+              <% } %>
+              <% } %>
+              <form action="/api/login" method="post">
+                <div class="row">
+                  <div class="col-lg-12 gap-between form-floating">
+                    
+                    <input type="email" name="email" class="form-control" id="email" placeholder="something@something" required>
+                    <label for="email" class="form-label">Email</label>
+                  </div>
+                  <div class="col-lg-12 gap-between form-floating">
+                  
+                  <input type="password" name="password" class="form-control" id="password" placeholder="give your password" minlength="6" required>
+                  <label for="password" class="form-label">Password</label>
+                  </div>
+                  <div class="col-lg-12 d-grid  gap-2 gap-between">
+                    <button type="submit" class="btn btn-lg btn-dark">Sign In</button>
+                  </div>
+                  
+                 
+                </div>
+                
+              </form>
+            </div>
+            
+            <div class="modal-footer">
+              <form action="/lets/sign_up/" method="post">
+                New to Book_Miejsce? <button type="submit" class="btn btn-light">Sign Up</button>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+
+</html>

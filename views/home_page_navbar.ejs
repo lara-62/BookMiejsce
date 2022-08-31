@@ -6,10 +6,11 @@
 
   <!-- Custom styles for this template -->
   <link href="/CSS/styles.css" rel="stylesheet">
+  <link href="/CSS/stars.css" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#023047;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><i class="fas fa-book fa-1x brand-icon"></i>Book <span
             class="title">Miejsce</span></a>
@@ -39,6 +40,7 @@
                   <hr class="dropdown-divider">
                 </li>
                 <li><a class="dropdown-item" href="#">Quote</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"  data-bs-target="#people_Modal">People</a></li>
               </ul>
             </li>
 
@@ -52,18 +54,18 @@
         <div class="dropdown mx-5 gap-between">
           <div class="profile dropdown-toggle mx-5" data-bs-toggle="dropdown" aria-expanded="false"
             id="profiledropdown">
-            <img src="/image/default.jpg" class="profile-image" alt="">
+            <img src="http://localhost:3000/image/user/<%=user.IMAGE_URL%>" class="profile-image" alt="">
           </div>
           <ul class="dropdown-menu " aria-labelledby="profiledropdown">
             <p style="text-align: center;"> <%= user.USER_NAME %></p>
             <hr>
             <li>
-              <form action="">
+              <form action="/profile1/<%=user.USER_ID%>" method="get">
                 <button class="dropdown-item"> Profile</button>
               </form>
             </li>
             <li>
-              <form action="">
+              <form action="/show_Your_friends" method="get">
                 <button class="dropdown-item"> Friends</button>
               </form>
             </li>
@@ -130,6 +132,35 @@
                   
                   <input type="text" name="genre_name" class="form-control" id="genrename" placeholder="Search by genre name" required>
                   <label for="genrename" class="form-label">Genre</label>
+                </div>
+                
+                <div class="col-lg-12 d-grid  gap-2 gap-between">
+                  <button type="submit" class="btn btn-lg btn-outline-dark">Search</button>
+                </div>
+                
+               
+              </div>
+              
+            </form>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div class="modal fade modal-sm" id="people_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          
+          <div class="modal-body">
+            
+            <form action="/show_people_profile" method="post">
+              <div class="row">
+                <div class="col-lg-12 gap-between form-floating">
+                  
+                  <input type="text" name="username" class="form-control" id="username" placeholder="Search by user name" required>
+                  <label for="username" class="form-label">USER NAME</label>
                 </div>
                 
                 <div class="col-lg-12 d-grid  gap-2 gap-between">

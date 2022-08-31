@@ -29,6 +29,9 @@ const review=require('./route/Review/add_review')
 const add_author=require('./route/Admin_route/Add_author')
 const follow_author=require('./route/Author/Author')
 const userfollowing=require('./route/users/user-following')
+const user_profile_show=require('./route/users/user_profile_show')
+const follow_friend=require('./route/Friend/follow_friend')
+const update_user=require('./route/users/update_profile')
 //var oracleDbStore = require('express-oracle-session')(session);
 const port=process.env.port|| 3000;
 
@@ -59,6 +62,9 @@ app.use('/',bookshelve);
 app.use('/',review);
 app.use('/',follow_author)
 app.use('/',userfollowing)
+app.use('/',user_profile_show)
+app.use('/',follow_friend)
+app.use('/',update_user)
 
 
 
@@ -66,9 +72,14 @@ app.get('/',function(req,res)
  {  
     let msg=[];  
     res.render('Home',{ msg:msg,error:[]})
+    
 
 
   
+})
+app.get('/test',async(req,res)=>
+{   let msg=[];  
+   res.render('Home/front.ejs',{ msg:msg,error:[]})
 })
 
 

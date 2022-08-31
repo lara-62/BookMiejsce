@@ -7,7 +7,8 @@ const router=express.Router();
 router.post('/review/:book_id',verify,async(req,res)=>
 {   let bookid=req.params.book_id;
     console.log(req.params);
-    
+    let ratings=req.body.stars;
+    console.log("rating:"+ratings);
     let userid=req.user.USER_ID;
     let review_body=req.body.review_body;
     console.log(review_body);
@@ -16,6 +17,7 @@ router.post('/review/:book_id',verify,async(req,res)=>
     let binds={
         review_body:review_body,
         date_added:date1,
+        rating:ratings,
         user_id:userid,
         book_id:bookid
     }

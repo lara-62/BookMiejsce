@@ -6,11 +6,12 @@
 
     <!-- Custom styles for this template -->
     <link href="/CSS/styles.css" rel="stylesheet">
+    
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   </head>
-  <body>
+  <body style="overflow: hidden;">
     
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand brand" href=""> <i class="fas fa-book fa-1x brand-icon"></i>Book <span class="title">Miejsce</span></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,8 +38,8 @@
         </div>
       </nav>
     
-     
-      <div class="homepage_image">
+   
+    <div class="homepage_image">
         <% if (msg.length>0) { %>
           <% for (e of msg) { %>
             <div class="alert alert-success alert-dismissible fade show reg-alert" role="alert">
@@ -47,10 +48,15 @@
             </div>
             <% } %>
               <% } %>
-                <h1 class="homepage_title">Keep Track of Your Book</h1>
-                <h2 class="homepage_title">Read anytime,anywhere</h2>
-      </div>
+              <div class="left-container">
+                <h1 class="homepage_title" style="text-shadow: 1rem; border: 1px; font-size:5rem; font-weight: 600;">Keep Track of <br>Your Book</h1>
+                <br>
+                <h2 class="homepage_title" style="font-size: 3rem;">Read anytime,anywhere</h2>
+              </div>
+      </div> 
+      
   
+      
     
   <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
