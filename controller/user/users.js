@@ -99,7 +99,7 @@ async function post(req, res, next) {
                                                 };
                                               if(errors.length==0){
                                                 errors.push("Registration successful!")
-                                                res.render('Home.ejs', { msg:errors ,error:[]
+                                                res.render('Home/front.ejs', { msg:errors ,error:[]
                                             
                                                 })
                                             }

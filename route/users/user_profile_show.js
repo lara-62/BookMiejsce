@@ -11,6 +11,10 @@ router.get('/editprofile',verify,async(req,res)=>{
         
     });
 })
+router.get('/quote',async(req,res)=>
+{
+    res.render('User/quote.ejs')
+})
  router.post('/show_people_profile',verify,async(req,res)=>{
    
     let username=req.body.username.toLowerCase();

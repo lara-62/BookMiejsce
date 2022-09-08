@@ -44,7 +44,7 @@ function post(req, res, next) {
                     if (results.rows[0] === undefined) {
                         errors.push('Wrong Email');
 
-                        res.render('Home', {
+                        res.render('login.ejs', {
                             msg: [],
                             error: errors
                         })
@@ -92,7 +92,7 @@ function post(req, res, next) {
                                 res.redirect('/user-profile');
                             }
                             else {
-                                res.render('Home', {
+                                res.render('login.ejs', {
                                     msg: [],
                                     error: errors
                                 })

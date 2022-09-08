@@ -71,7 +71,7 @@ app.use('/',update_user)
 app.get('/',function(req,res)
  {  
     let msg=[];  
-    res.render('Home',{ msg:msg,error:[]})
+    res.render('Home/front',{ msg:msg,error:[]})
     
 
 

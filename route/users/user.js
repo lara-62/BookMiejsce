@@ -10,4 +10,8 @@ router.post('/login',login.post);
 router.get('/Home_page',(req,res)=>{
     res.redirect('/user-profile');
 })
+router.get('/login',async(req,res)=>{
+    res.render('login.ejs',{error:[]})
+
+})
 module.exports=router;

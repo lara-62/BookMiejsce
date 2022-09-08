@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><i class="fas fa-book fa-1x brand-icon"></i>Book <span
-            class="title">Miejsce</span></a>
+            class="title" style="color: rgb(245, 152, 90);">Miejsce</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -32,13 +32,13 @@
                 Search
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Book</a></li>
+     
                 <li><a class="dropdown-item" href=""  data-bs-toggle="modal"  data-bs-target="#Author_Modal">Author</a></li>
                 <li><a class="dropdown-item" href="" data-bs-toggle="modal"  data-bs-target="#genre_Modal">Genre</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Quote</a></li>
+                <li><a class="dropdown-item" href="/quote">Quote</a></li>
                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal"  data-bs-target="#people_Modal">People</a></li>
               </ul>
             </li>
@@ -80,7 +80,7 @@
               </form>
             </li>
             <li>
-              <form action="">
+              <form action="/logout" method="get">
                 <button class="dropdown-item">Logout</button>
               </form>
             </li>

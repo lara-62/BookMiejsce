@@ -30,5 +30,15 @@ router.get('/user-profile',verify,async(req,res)=>{
         })
 })
 
+router.get('/logout', verify ,(req,res)=>{
+  //destroy token
+  let msg=[];
+  msg.push('We hope to see you soon!')
+  res.cookie('auth', '', { maxAge:1 });
+  res.render('Home/front',{
+    msg: msg,
+    error:[]
 
+  })
+});
 module.exports=router;

@@ -9,8 +9,13 @@ const { jwtSecretKey } = require('../Database/Config');
 
  async function verify(req,res,next){
     const token=req.cookies.auth
+    let error=[];
+    error.push('Access denied')
     console.log("         "+token+"       ")
-    if(!token) return res.redirect('/api/login?status=Access Denied');
+    if(!token) return res.render('Home',{
+        msg:[],
+        error:error
+    });
    
     try{
         const verified = jwt.verify(token,jwtSecretKey);
