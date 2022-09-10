@@ -68,8 +68,7 @@ async function gethasreadbooks(user_id)
     ' JOIN PUBLISHER p'+
     ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)'+
     '  JOIN HAS_READ  h'+
-    ' ON(h.BOOK_ID=b.BOOK_ID)'+
-    ' WHERE b.BOOK_ID IN ( SELECT BOOK_ID FROM HAS_READ WHERE USER_ID=:user_id)'
+    ' ON(h.BOOK_ID=b.BOOK_ID AND h.USER_ID=:user_id)'
     let binds={
         user_id:user_id
     }
@@ -89,8 +88,7 @@ async function getreadingbooks(user_id)
     ' JOIN PUBLISHER p'+
     ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)'+
     ' JOIN READING  h'+
-    ' ON(h.BOOK_ID=b.BOOK_ID)'+
-    ' WHERE b.BOOK_ID IN ( SELECT BOOK_ID FROM READING WHERE USER_ID=:user_id)'
+    ' ON(h.BOOK_ID=b.BOOK_ID AND h.USER_ID=:user_id)'
     let binds={
         user_id:user_id
     }
@@ -111,8 +109,7 @@ async function getwillreadbooks(user_id)
         ' JOIN PUBLISHER p' +
         ' ON(p.PUBLISHER_ID=b.PUBLISHER_ID)' +
         '   JOIN WILL_READ  h' +
-        ' ON(h.BOOK_ID=b.BOOK_ID)' +
-        ' WHERE b.BOOK_ID IN ( SELECT BOOK_ID FROM WILL_READ WHERE USER_ID=:user_id)'
+        ' ON(h.BOOK_ID=b.BOOK_ID AND h.USER_ID=:user_id)'
     let binds={
         user_id:user_id
     }
